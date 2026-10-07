@@ -1,11 +1,15 @@
-import { ProductsController } from "../controllers/products.controller.ts";
 import { Router } from "express";
+
+import { ProductsController } from "../controllers/products.controller.ts";
 
 const router = Router();
 const productsController = new ProductsController();
 
-router.get('/', productsController.getProducts);
-router.post('/', productsController.createProduct);
-router.put('/:id', productsController.updateProduct);
+router.get("/getAll", productsController.getAll);
+router.get("/getById/:id", productsController.getById);
+router.get("/create", productsController.create);
+router.get("/update/:id", productsController.update);
+router.get("/delete/:id", productsController.delete);
+router.get("/chancePrice/:id", productsController.changePrice);
 
 export default router;
