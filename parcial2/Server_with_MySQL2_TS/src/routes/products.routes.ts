@@ -7,9 +7,9 @@ const productsController = new ProductsController();
 
 router.get("/getAll", productsController.getAll);
 router.get("/getById/:id", productsController.getById);
-router.get("/create", productsController.create);
-router.get("/update/:id", productsController.update);
-router.get("/delete/:id", productsController.delete);
-router.get("/chancePrice/:id", productsController.changePrice);
+router.post("/create", productsController.create);
+router.put("/update/:id", productsController.update);
+router.delete("/delete/:id", productsController.delete);
+router.patch("/changePrice/:id", productsController.changePrice);
 
 export default router;

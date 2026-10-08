@@ -1,6 +1,8 @@
-CREATE DATABASE if not exists pos;
+CREATE DATABASE if not exists products_db;
 
-USE pos; 
+USE products_db; 
+
+DROP TABLE IF EXISTS products;
 
 CREATE TABLE products (
     id int auto_increment PRIMARY KEY,
@@ -9,7 +11,8 @@ CREATE TABLE products (
     stock INTEGER NOT NULL,
     description VARCHAR(500) NOT NULL,
     brand VARCHAR(100),
-    img TEXT
+    img TEXT,
+    active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 INSERT INTO products (name, price, stock, description, brand, img) VALUES
