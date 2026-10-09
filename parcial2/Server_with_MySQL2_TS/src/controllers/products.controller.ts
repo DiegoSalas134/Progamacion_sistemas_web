@@ -8,7 +8,7 @@ export class ProductsController {
   async getAll(_req:Request, res:Response){
     try {
       const [products] = await pool.execute<RowDataPacket[]>(
-        "select id, name, price, stock, description, img, active from products where active = TRUE",
+        "select id, name, price, stock, description, brand, img, active from products where active = TRUE",
       );
       res.json(products);
     } catch {
@@ -26,7 +26,7 @@ export class ProductsController {
       }
 
       const [products] = await pool.execute<RowDataPacket[]>(
-        "select id, name, price, stock, description, brand, img, active from products where id = ?",
+        "select id, name, price, stock, description, brand, img, active from products where id = ? and active =TRUE",
         [id],
       );
       if (!products[0]) {
@@ -105,8 +105,9 @@ export class ProductsController {
         return;
       }
       res.status(200).json({ message: "product deleted" });
-      }catch {
-    }   res.status(500).json({ message: "internal server error" });
+    }catch {
+      res.status(500).json({ message: "internal server error" });
+    }   
   }
 
   async changePrice(req:Request, res:Response){
